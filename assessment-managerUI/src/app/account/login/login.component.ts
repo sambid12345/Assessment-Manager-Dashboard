@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AccountService } from '../account.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent  implements OnInit{
   loginForm!: FormGroup;
-  constructor( private router:Router, private fb: FormBuilder){
+  constructor( private router:Router, private fb: FormBuilder, private accountService: AccountService){
 
   }
 
@@ -18,14 +19,21 @@ export class LoginComponent  implements OnInit{
   }
   initiateLoginForm(){
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      email: ['sambidchampati@gmail.com', [Validators.required, Validators.email]],
+      password: ['sambid12345', [Validators.required, Validators.minLength(6)]]
     });
   }
   onLogin(): void {
     if (this.loginForm.valid) {
       console.log('Login data:', this.loginForm.value);
-      
+      this.accountService.login(this.loginForm.value).subscribe({
+        next: (response: any)=>{
+          console.log('login successful');
+        },
+        error: (error: any)=>{
+          console.log('login failed');
+        }
+      })
       
     }
   }
