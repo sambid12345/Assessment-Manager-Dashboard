@@ -2,26 +2,50 @@
 <div class="signup-container">
     <mat-card>
       <mat-card-title>Sign Up</mat-card-title>
-      <form>
+      <div [formGroup]="signupForm">
         <mat-form-field class="full-width">
-          <mat-label>Username</mat-label>
-          <input matInput placeholder="Username" required>
-        </mat-form-field>
-  
-        <mat-form-field class="full-width">
-          <mat-label>Email</mat-label>
-          <input matInput placeholder="Email" type="email" required>
-        </mat-form-field>
-  
-        <mat-form-field class="full-width">
-          <mat-label>Password</mat-label>
-          <input matInput placeholder="Password" type="password" required>
-        </mat-form-field>
-  
-        <button mat-raised-button color="primary" type="submit">Sign Up</button>
-      </form>
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username">
+            <mat-error *ngIf="signupForm.controls['username'].invalid && signupForm.controls['username'].touched">
+              Username is required and must be at least 3 characters long
+            </mat-error>
+          </mat-form-field>
+    
+          <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email">
+            <mat-error *ngIf="signupForm.controls['email'].invalid && signupForm.controls['email'].touched">
+              Enter a valid email
+            </mat-error>
+          </mat-form-field>
+    
+          <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" type="password">
+            <mat-error *ngIf="signupForm.controls['password'].invalid && signupForm.controls['password'].touched">
+              Password is required and must be at least 6 characters long
+            </mat-error>
+          </mat-form-field>
+    
+          <mat-form-field class="full-width">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="role">
+              <mat-option *ngFor="let role of roles" [value]="role">{{ role }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="signupForm.controls['role'].invalid && signupForm.controls['role'].touched">
+              Role is required
+            </mat-error>
+          </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid"
+        (click)="onSignup()">
+            Sign Up
+        </button>
+      </div>
       <mat-card-footer>
-        <a (click)="navigateTo('account/signup')">Already have an account? Login here.</a>
+        <a (click)="navigateTo('account/login')" style="cursor: pointer; color: #3f83f8;"
+        class="hover-underline">
+            Already have an account? Login here.
+        </a>
       </mat-card-footer>
     </mat-card>
   </div>

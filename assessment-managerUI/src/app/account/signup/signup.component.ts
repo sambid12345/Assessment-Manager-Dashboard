@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,12 +8,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-
-  constructor(private router: Router){
+  signupForm!:FormGroup;
+  roles: string[] = ['Admin', 'Delivery Admin'];
+  constructor(private router: Router, private fb:FormBuilder,){
 
   }
   ngOnInit(): void {
-      
+      this.initiateSignupForm();
+  }
+  initiateSignupForm(){
+    this.signupForm = this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      role: ['', Validators.required]
+    });
+  }
+  onSignup(): void {
+    if (this.signupForm.valid) {
+      console.log('Signup data:', this.signupForm.value);
+
+      this.router.navigate(['/login']);
+    }
   }
   navigateTo(path:string){
     this.router.navigate([path])

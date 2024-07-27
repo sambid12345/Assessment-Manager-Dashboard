@@ -1,17 +1,17 @@
-
 .signup-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-  }
-  
-  mat-card {
+    overflow-y: auto;
+}
+mat-card {
     width: 400px;
     padding: 20px;
-  }
-  
-  .full-width {
+}
+.full-width {
     width: 100%;
-  }
-  
+}
+mat-card-title {
+    color: white;
+}
