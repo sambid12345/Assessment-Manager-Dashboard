@@ -1,0 +1,28 @@
+<div class="question-list-container">
+    <h1>Questions</h1>
+    <div class="actions">
+      <button mat-raised-button color="primary" routerLink="/questions/create">
+        Add Question
+      </button>
+    </div>
+    <mat-list>
+      <mat-list-item *ngFor="let question of questions">
+        <div class="question-text">
+          <h3>{{ question.questionText }}</h3>
+          <p>Tags: {{ question.tags.join(', ') }}</p>
+        </div>
+        <div class="question-actions">
+          <button mat-icon-button color="accent" [routerLink]="['/questions', question.id]">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" [routerLink]="['/questions/edit', question.id]">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteQuestion(question.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  

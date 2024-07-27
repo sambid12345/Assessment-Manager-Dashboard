@@ -15,8 +15,8 @@ export class AccountService {
     return this.http.post(`${this.baseUrl}login`, loginData)
       .pipe(
         tap((response: any) => {
-          localStorage.setItem('authToken', response?.token);
-          localStorage.setItem('userData', JSON.stringify(response?.user));
+            console.log('login response', response);
+          localStorage.setItem('userInfo', JSON.stringify(response?.userInfo));
         })
       );
   }

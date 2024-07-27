@@ -1,0 +1,38 @@
+.question-list-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.question-text {
+    flex: 1;
+}
+
+.question-actions {
+    display: flex;
+    align-items: center;
+}
+
+mat-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+mat-list-item h3 {
+    margin: 0;
+}
+
+mat-list-item p {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.6);
+}

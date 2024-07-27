@@ -29,6 +29,7 @@ export class LoginComponent  implements OnInit{
       this.accountService.login(this.loginForm.value).subscribe({
         next: (response: any)=>{
           console.log('login successful');
+          this.router.navigate(['questions']);
         },
         error: (error: any)=>{
           console.log('login failed');
