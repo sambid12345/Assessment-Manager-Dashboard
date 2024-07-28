@@ -7,23 +7,25 @@
       </button>
     </div>
 
-    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+    <table *ngIf="dataSource && dataSource.filteredData && dataSource.filteredData.length > 0" 
+        mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
        class="mat-elevation-z8">
 
        <!-- Action Column -->
-       <ng-container matColumnDef="action">
+       <ng-container matColumnDef="_id">
             <th mat-header-cell *matHeaderCellDef >
                 Action
             </th>
             <td mat-cell *matCellDef="let element"> 
                 <div class="question-actions">
-                    <button mat-icon-button color="accent">
+                    
+                    <button mat-icon-button color="accent" (click)="navigateTo('/questions/'+ element._id)" >
                       <mat-icon>visibility</mat-icon>
                     </button>
-                    <button mat-icon-button color="primary" >
+                    <button mat-icon-button color="primary" (click)="navigateTo('/questions/edit/'+element._id)">
                       <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-icon-button color="warn" >
+                    <button mat-icon-button color="warn" (click)="deleteQuestion(element._id)">
                       <mat-icon>delete</mat-icon>
                     </button>
                   </div>

@@ -29,7 +29,7 @@ export class QuestionService {
     return this.http.post<Question>(this.apiUrl, question);
   }
  
-  deleteQuestion(id: string): Observable<void> {
+  deleteQuestion(id: string| undefined): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

@@ -1,0 +1,21 @@
+.question-detail-card {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #362b2b;
+}
+
+.detail-item {
+    margin-bottom: 15px;
+}
+
+.correct-option {
+    color: green;
+    font-weight: bold;
+}
+
+mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+}

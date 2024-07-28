@@ -1,1 +1,36 @@
-<p>question-detail works!</p>
+<mat-card class="question-detail-card" style="color: aliceblue;">
+    <mat-card-header>
+        <mat-card-title>Question Details</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="detail-item">
+            <strong>Question Text:</strong>
+            <p>{{ question?.text }}</p>
+        </div>
+        <div class="detail-item">
+            <strong>Options:</strong>
+            <ul>
+                <li *ngFor="let option of question?.options; let i = index">
+                    {{ i + 1 }}. {{ option }}
+                    <span *ngIf="i === question?.correctOption" class="correct-option">(Correct)</span>
+                </li>
+            </ul>
+        </div>
+        <div class="detail-item">
+            <strong>Marks:</strong>
+            <p>{{ question?.marks }}</p>
+        </div>
+        <div class="detail-item">
+            <strong>Negative Marks:</strong>
+            <p>{{ question?.negativeMarks }}</p>
+        </div>
+        <div class="detail-item">
+            <strong>Tags:</strong>
+            <p *ngIf="question && question?.tags">{{ question.tags }}</p>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button color="primary" (click)="onEdit()">Edit</button>
+        <button mat-button color="warn" (click)="onDelete()">Delete</button>
+    </mat-card-actions>
+</mat-card>

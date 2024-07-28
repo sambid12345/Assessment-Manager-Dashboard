@@ -15,7 +15,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 export class QuestionListComponent implements OnInit{
   questions: Question[] = [];
 
-  displayedColumns: string[] = ['action','updatedAt', 'text', 'tags', 'createdAt'];
+  displayedColumns: string[] = ['_id','updatedAt', 'text', 'tags', 'createdAt'];
   dataSource : any
 
   constructor(private questionService: QuestionService, private router: Router,
@@ -36,14 +36,15 @@ export class QuestionListComponent implements OnInit{
     this.questionService.getQuestions().subscribe(
       {
         next: (data: any)=>{
-          console.log('Question Data');
+          
           this.questions = data;
-          let modifiedDataSource = this.questions.map((question: any)=>{
-            question.action = '';
-            return question;
-          })
-          console.log('modified question list', modifiedDataSource);
-          this.dataSource = new MatTableDataSource(modifiedDataSource);
+          // let modifiedDataSource = this.questions.map((question: any)=>{
+          //   question.action = '';
+          //   return question;
+          // })
+          // console.log('modified question list', modifiedDataSource);
+          console.log('question data', this.questions);
+          this.dataSource = new MatTableDataSource(this.questions);
           console.log('data source', this.dataSource);
           this.dataSource.sort = this.sort;
 
@@ -56,20 +57,18 @@ export class QuestionListComponent implements OnInit{
   }
 
   deleteQuestion(id: string|undefined): void {
-    // this.questionService.deleteQuestion(id).subscribe(
-    //   () => this.loadQuestions(),
-    //   error => console.error('Error deleting question', error)
-    // );
+    if(id && confirm('Are you sure you want to delete this question?')){
+      this.questionService.deleteQuestion(id).subscribe({
+        next: ()=>{this.loadQuestions()},
+        error: (error: any)=>{console.error('Error deleting question', error)}
+      })
+    }
   }
   navigateTo(path:string){
     this.router.navigate([path]);
   }
 
   announceSortChange(sortState: Sort) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
