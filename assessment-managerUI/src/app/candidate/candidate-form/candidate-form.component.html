@@ -1,1 +1,32 @@
-<p>candidate-form works!</p>
+<mat-card class="candidate-form-card">
+    <mat-card-header>
+        <mat-card-title style="color: aliceblue;">{{ isEditMode ? 'Edit Candidate' : 'Add New Candidate' }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" placeholder="Enter candidate's name">
+                <mat-error *ngIf="candidateForm.get('name')?.hasError('required')">Name is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" placeholder="Enter candidate's email">
+                <mat-error *ngIf="candidateForm.get('email')?.hasError('required')">Email is required</mat-error>
+                <mat-error *ngIf="candidateForm.get('email')?.hasError('email')">Invalid email</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Phone</mat-label>
+                <input matInput formControlName="phone" placeholder="Enter candidate's phone number">
+                <mat-error *ngIf="candidateForm.get('phone')?.hasError('required')">Phone number is required</mat-error>
+            </mat-form-field>
+
+            <mat-card-actions>
+                <button mat-raised-button color="primary" type="submit">Save</button>
+                <button mat-button color="warn" routerLink="/candidates">Cancel</button>
+            </mat-card-actions>
+        </form>
+    </mat-card-content>
+</mat-card>

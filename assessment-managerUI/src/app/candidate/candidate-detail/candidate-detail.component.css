@@ -1,0 +1,13 @@
+.candidate-detail-card {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+mat-card-header mat-card-title {
+    font-size: 1.5em;
+}
+
+mat-card-content p {
+    margin: 0;
+    padding: 10px 0;
+}
