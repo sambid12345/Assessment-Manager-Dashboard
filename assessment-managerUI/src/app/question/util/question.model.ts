@@ -1,6 +1,6 @@
 export interface Question {
   id?: string; // Optional, used for uniquely identifying the question, especially when interacting with a backend
-  questionText: string;
+  text: string;
   options: string[];
   correctOption: number; // Index of the correct answer in the options array (0-based index)
   marks: number;

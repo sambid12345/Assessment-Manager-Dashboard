@@ -1,1 +1,60 @@
-<p>question-form works!</p>
+<div class="question-form-container">
+
+    <h1 style="color: aliceblue;">{{ isEditMode ? 'Edit Question' : 'Add New Question' }}</h1>
+    <div [formGroup]="questionForm" >
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Question Text</mat-label>
+            <textarea matInput formControlName="questionText" required></textarea>
+            <mat-error *ngIf="!questionForm.get('questionText')?.valid">
+                Question text is required.
+            </mat-error>
+        </mat-form-field>
+
+        <div formArrayName="options" class="options-container">
+            <div *ngFor="let option of options.controls; let i = index" [formGroupName]="i">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Option {{ i + 1 }}</mat-label>
+                    <input matInput formControlName="text" required>
+                    <mat-error *ngIf="!option.get('text')?.valid">
+                        Option text is required.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <mat-form-field *ngIf="options.controls.length > 0" appearance="outline" class="full-width">
+            <mat-label>Correct Option</mat-label>
+            <mat-select formControlName="correctOption">
+                <mat-option *ngFor="let option of options.controls; let i = index" [value]="i">
+                    {{ option.value.text }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Marks</mat-label>
+            <input type="number" matInput formControlName="marks" required>
+            <mat-error *ngIf="!questionForm.get('marks')?.valid">
+                Marks are required and must be a positive number.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Negative Marks</mat-label>
+            <input type="number" matInput formControlName="negativeMarks">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Tags</mat-label>
+            <input matInput formControlName="tags" placeholder="Enter comma-separated tags">
+        </mat-form-field>
+
+        <div class="form-actions">
+            <button mat-raised-button color="primary" type="submit" [disabled]="questionForm.invalid"
+            (click)="onSubmit()">
+                {{ isEditMode ? 'Update Question' : 'Add Question' }}
+            </button>
+        </div>
+    </div>
+      
+</div>

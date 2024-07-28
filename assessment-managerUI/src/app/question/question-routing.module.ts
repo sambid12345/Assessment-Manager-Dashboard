@@ -6,8 +6,8 @@ import { QuestionDetailComponent } from './question-detail/question-detail.compo
 
 const routes: Routes = [
   { path: '', component: QuestionListComponent },
-  { path: ':id', component: QuestionDetailComponent },
   { path: 'create', component: QuestionFormComponent },
+  { path: ':id', component: QuestionDetailComponent },
   { path: 'edit/:id', component: QuestionFormComponent }
 ];
 

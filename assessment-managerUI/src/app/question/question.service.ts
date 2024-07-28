@@ -8,7 +8,7 @@ import { Question } from './util/question.model';
 })
 export class QuestionService {
 
-  private apiUrl = 'https://your-api-endpoint.com/questions'; 
+  private apiUrl = 'http://localhost:3000/api/questions'; 
 
   constructor(private http: HttpClient) {}
 
@@ -17,6 +17,17 @@ export class QuestionService {
     return this.http.get<Question[]>(this.apiUrl);
   }
 
+  getQuestionById(id: string): Observable<Question> {
+    return this.http.get<Question>(`${this.apiUrl}/${id}`);
+  }
+
+  updateQuestion(id: string, question: Question): Observable<Question> {
+    return this.http.put<Question>(`${this.apiUrl}/${id}`, question);
+  }
+
+  createQuestion(question: Question): Observable<Question> {
+    return this.http.post<Question>(this.apiUrl, question);
+  }
  
   deleteQuestion(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
