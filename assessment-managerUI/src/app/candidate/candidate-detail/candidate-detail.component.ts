@@ -37,4 +37,10 @@ export class CandidateDetailComponent implements OnInit{
     })
    
   }
+  logout(): void {
+    if(confirm('Are you sure you want to delete this question?')){
+      localStorage.removeItem('user');
+      this.router.navigate(['/login']);
+    }
+  }
 }

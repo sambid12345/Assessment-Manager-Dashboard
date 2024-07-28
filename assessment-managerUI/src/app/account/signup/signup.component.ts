@@ -10,7 +10,7 @@ import { AccountService } from '../account.service';
 })
 export class SignupComponent implements OnInit {
   signupForm!:FormGroup;
-  roles: string[] = ['Admin', 'Delivery Admin'];
+  roles: string[] = ['Admin', 'DeliveryAdmin'];
   constructor(private router: Router, private fb:FormBuilder, 
     private accountService: AccountService){
 
@@ -20,9 +20,9 @@ export class SignupComponent implements OnInit {
   }
   initiateSignupForm(){
     this.signupForm = this.fb.group({
-      username: ['sambid', [Validators.required, Validators.minLength(3)]],
-      email: ['sambidchampati@gmail.com', [Validators.required, Validators.email]],
-      password: ['sambid12345', [Validators.required, Validators.minLength(6)]],
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       role: ['', Validators.required]
     });
   }
@@ -31,10 +31,11 @@ export class SignupComponent implements OnInit {
       console.log('Signup data:', this.signupForm.value);
       this.accountService.signup(this.signupForm.value).subscribe({
         next: (response: any)=>{
+          alert('Account Creation Successful');
           this.router.navigate(['account','login']);
         },
         error: (err)=>{
-
+          alert('Account Creation Failed');
         }
       });
     }

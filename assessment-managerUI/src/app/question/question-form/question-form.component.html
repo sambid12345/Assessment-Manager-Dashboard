@@ -1,3 +1,10 @@
+<mat-toolbar color="primary">
+    <span>Assessment Manager</span>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/questions">Questions</button>
+    <button mat-button routerLink="/candidates">Candidates</button>
+    <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
 <div class="question-form-container">
 
     <h1 style="color: aliceblue;">{{ isEditMode ? 'Edit Question' : 'Add New Question' }}</h1>

@@ -1,6 +1,19 @@
 mat-card {
     margin: 20px;
 }
+.candidate-list-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.candidate-actions {
+    display: flex;
+    align-items: center;
+}
 
 table {
     width: 100%;
@@ -15,4 +28,19 @@ table {
     justify-content: flex-end;
     margin-bottom: 20px;
     margin-right: 20px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.account-details {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+mat-card {
+    max-width: 600px;
+    width: 100%;
 }

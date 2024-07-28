@@ -1,3 +1,10 @@
+<mat-toolbar color="primary">
+    <span>Assessment Manager</span>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/questions">Questions</button>
+    <button mat-button routerLink="/candidates">Candidates</button>
+    <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
 <mat-card class="candidate-form-card">
     <mat-card-header>
         <mat-card-title style="color: aliceblue;">{{ isEditMode ? 'Edit Candidate' : 'Add New Candidate' }}</mat-card-title>

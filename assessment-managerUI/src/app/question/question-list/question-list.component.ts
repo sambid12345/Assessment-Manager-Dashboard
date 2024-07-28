@@ -75,4 +75,10 @@ export class QuestionListComponent implements OnInit{
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+  logout(): void {
+    if(confirm('Are you sure you want to delete this question?')){
+      localStorage.removeItem('user');
+      this.router.navigate(['/login']);
+    }
+  }
 }

@@ -1,3 +1,10 @@
+<mat-toolbar color="primary">
+    <span>Assessment Manager</span>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/questions">Questions</button>
+    <button mat-button routerLink="/candidates">Candidates</button>
+    <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
 <div class="question-list-container">
     <h1>Questions</h1>
     <div class="actions">

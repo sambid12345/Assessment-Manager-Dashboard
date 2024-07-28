@@ -12,6 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -28,6 +30,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatButtonModule,
     MatCardModule,
     MatTableModule,
+    MatToolbarModule,
+    MatIconModule,
     CommonModule,
     CandidateRoutingModule,
     MatSortModule

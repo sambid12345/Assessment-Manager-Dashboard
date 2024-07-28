@@ -19,8 +19,8 @@ export class LoginComponent  implements OnInit{
   }
   initiateLoginForm(){
     this.loginForm = this.fb.group({
-      email: ['sambidchampati@gmail.com', [Validators.required, Validators.email]],
-      password: ['sambid12345', [Validators.required, Validators.minLength(6)]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
   onLogin(): void {
@@ -29,10 +29,12 @@ export class LoginComponent  implements OnInit{
       this.accountService.login(this.loginForm.value).subscribe({
         next: (response: any)=>{
           console.log('login successful');
-          this.router.navigate(['questions']);
+          alert('login successful');
+          this.router.navigate(['dashboard']);
         },
         error: (error: any)=>{
           console.log('login failed');
+          alert('login failed');
         }
       })
       

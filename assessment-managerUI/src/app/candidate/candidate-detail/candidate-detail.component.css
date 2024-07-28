@@ -11,3 +11,18 @@ mat-card-content p {
     margin: 0;
     padding: 10px 0;
 }
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.account-details {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+mat-card {
+    max-width: 600px;
+    width: 100%;
+}
